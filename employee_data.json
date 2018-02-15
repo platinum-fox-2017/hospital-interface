@@ -1,1 +1,1 @@
-[{"username":"budi","position":"dokter","password":"123456"},{"username":"afif","position":"perawat","password":"123456"},{"username":"afif","position":"perawat","password":"123456"},{"username":"afif","position":"perawat","password":"123456"}]
+[{"username":"budi","position":"dokter","password":"123456","is_login":false},{"username":"haidar","position":"dokter","password":"123456","is_login":true},{"username":"maulana","position":"perawat","password":"123456","is_login":false}]

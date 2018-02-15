@@ -1,5 +1,6 @@
 const Employee = require('./models/EmployeeModel.js');
 const EmployeeView = require('./views/EmployeeView.js');
+const Hospital = require('./models/HospitalModel.js');
 
 class Command {
   constructor(command,flag) {
@@ -14,6 +15,11 @@ class Command {
     } else if(this.command === 'login'){
       let employee = new Employee(this.flag[0],this.flag[1]);
       employee.login(EmployeeView.showAlertLogin);
+    } else if(this.command === 'addPatient'){
+      Hospital.addPatient(this.flag);
+    } else if(this.command === 'logout'){
+      let employee = new Employee(this.flag[0]);
+      employee.logout(EmployeeView.showAlertLogout);
     }
   }
 }
