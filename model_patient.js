@@ -49,11 +49,8 @@ class Patient {
           fs.writeFile(filePatient,JSON.stringify(listPatient),function(err,data){
           })
           callback(true,listPatient)
-          // return
         })
       }
-      // callback(false,name)
-      
     })
 
   }
