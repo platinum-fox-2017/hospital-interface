@@ -1,25 +1,7 @@
-class Hospital {
-  constructor(name, location, employees, patients) {
-    this.name = name
-    this.employees = employees
-    this.patients = patients
-    this.location = location
-  }
-}
+let comment = process.argv.splice(2).join(' ').split(' ')
 
-class Patient {
-  constructor(id, name, diagnosis) {
-    this.id = id
-    this.name = name
-    this.diagnosis = diagnosis
-  }
-}
+const C_Hospital = require('./controllers/hospital')
 
-class Employee {
-  constructor(name, position, username, password) {
-    this.name = name
-    this.position = position
-    this.username = username
-    this.password = password
-  }
+if(comment[0]==='register'){
+  C_Hospital.registerEmployee(comment[1], comment[2], comment[3])
 }
