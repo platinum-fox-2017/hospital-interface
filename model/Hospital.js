@@ -1,5 +1,6 @@
 const fs = require('fs');
 const Employee = require('./Employee')
+const Patient = require('./Patient')
 
 class Hospital {
     constructor(name, location) {
@@ -17,8 +18,15 @@ class Hospital {
       });
     }
 
-    writeFile(newFile){
+    writeFileEmployee(newFile){
       fs.writeFile('./employee.json', newFile, (err) => {
+          if (err) throw err;
+          
+      });
+    }
+
+    writeFilePatient(newFile){
+      fs.writeFile('./patient.json', newFile, (err) => {
           if (err) throw err;
           
       });
@@ -41,7 +49,7 @@ class Hospital {
       });
     }
 
-    employeeLogin(username, password, callbackView){
+    employeeLogin(username, password, callbackWrite, callbackView){
       fs.readFile('./employee.json', 'UTF-8', (err, data) => {
         if (err) throw err;
         let parsedData = JSON.parse(data);
@@ -49,6 +57,10 @@ class Hospital {
         for(let i=0; i<parsedData.length; i++){
           if(parsedData[i].username == username){
             if(parsedData[i].password == password){
+              for(let j=0; j<parsedData.length; j++){
+                parsedData[j].isLoggedIn = false;
+              }
+              parsedData[i].isLoggedIn = true;
               statusMessage = `user ${parsedData[i].name} logged in successfully`;
               break;
             }
@@ -57,9 +69,40 @@ class Hospital {
         if(statusMessage == ''){
           statusMessage = `username / password wrong`;
         }
+        callbackWrite(JSON.stringify(parsedData))
         callbackView(statusMessage)
       });
     }
+
+    addPatient(id, nama, diagnosis, callbackWrite, callbackView){
+      fs.readFile('./employee.json', 'UTF-8', (err, data) => {
+        if (err) throw err;
+        let parsedData = JSON.parse(data);
+        let statusMessage = '';
+
+        for(let i=0; i<parsedData.length; i++){
+          if(parsedData[i].isLoggedIn){
+            if(parsedData[i].position.toLowerCase() == 'dokter'){
+            
+              fs.readFile('./patient.json', 'UTF-8', (err, data) => {
+                if (err) throw err;
+                let parsedData = JSON.parse(data);
+                let statusMessage = '';
+                let patient = new Patient(id, nama, diagnosis);              
+                
+                statusMessage = `Data pasien berhasil ditambahkan. Total data pasien : ${parsedData.length+1}`;
+                parsedData.push(patient);
+                callbackWrite(JSON.stringify(parsedData));
+                callbackView(statusMessage);
+              });
+            }
+            let statusMessage = 'Tidak memiliki akses untuk add patient';
+            callbackView(statusMessage);
+          }
+        }
+      });
+    }
+    
 }
 
 module.exports = Hospital;

@@ -1,1 +1,1 @@
-[{"name":"reza","username":"reza","password":"123"},{"name":"dhika","username":"dhika","password":"123456"}]
+[{"name":"testadmin","position":"admin","username":"testadmin","password":"123","isLoggedIn":true},{"name":"testdokter","position":"dokter","username":"testdokter","password":"123","isLoggedIn":false}]
