@@ -1,0 +1,72 @@
+[
+  {
+    "username": "Watkins",
+    "password": "5a84027b03569541fd91a861",
+    "role": "office boy"
+  },
+  {
+    "username": "Odonnell",
+    "password": "5a84027b47e7d91fb27df273",
+    "role": "dokter"
+  },
+  {
+    "username": "Downs",
+    "password": "5a84027b1e90243bc463fef5",
+    "role": "receptionist"
+  },
+  {
+    "username": "Leon",
+    "password": "5a84027b9e50d3e0c74fa7e9",
+    "role": "receptionist"
+  },
+  {
+    "username": "Bowen",
+    "password": "5a84027b04cf8e7c00d3fef7",
+    "role": "dokter"
+  },
+  {
+    "username": "Wooten",
+    "password": "5a84027b7d6f1ffde66c6aec",
+    "role": "dokter"
+  },
+  {
+    "username": "Frank",
+    "password": "5a84027bc6122cd5fec9e86a",
+    "role": "receptionist"
+  },
+  {
+    "username": "Reeves",
+    "password": "5a84027baf0ad8088c69f31d",
+    "role": "admin"
+  },
+  {
+    "username": "Hobbs",
+    "password": "5a84027bff4fbb51f01a6b4a",
+    "role": "dokter"
+  },
+  {
+    "username": "Blankenship",
+    "password": "5a84027b2a8afa8e344fb042",
+    "role": "office boy"
+  },
+  {
+    "username": "Gonzalez",
+    "password": "5a84027b9dd08f5c36dcf844",
+    "role": "office boy"
+  },
+  {
+    "username": "Craft",
+    "password": "5a84027bad7014a1b9cb6cbe",
+    "role": "admin"
+  },
+  {
+    "username": "Rosa",
+    "password": "5a84027b2f756abcce53ec1c",
+    "role": "admin"
+  },
+  {
+    "username": "Rojas",
+    "password": "5a84027b1731ae9b9e153bb9",
+    "role": "dokter"
+  }
+]
