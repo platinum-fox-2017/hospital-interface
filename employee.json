@@ -1,1 +1,1 @@
-[{"employees":[{"name":"reza","position":"dokter","username":"reza","password":"123123"}],"patients":[]}]
+[{"name":"reza","username":"reza","password":"123"},{"name":"dhika","username":"dhika","password":"123456"}]

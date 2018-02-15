@@ -1,5 +1,10 @@
 class Hospital {
+
     static register(statusMessage){
+        console.log(statusMessage);
+    }
+
+    static login(statusMessage){
         console.log(statusMessage);
     }
 }

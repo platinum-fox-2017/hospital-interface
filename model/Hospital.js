@@ -13,7 +13,14 @@ class Hospital {
       fs.readFile('./employee.json', 'UTF-8', (err, data) => {
         if (err) throw err;
         let parsedData = JSON.parse(data);
-        
+        this.employees.push(parsedData.employees);
+      });
+    }
+
+    writeFile(newFile){
+      fs.writeFile('./employee.json', newFile, (err) => {
+          if (err) throw err;
+          
       });
     }
 
@@ -27,23 +34,32 @@ class Hospital {
         this.employees.push(employee);
         statusMessage = `Save data success {"username":"${employee.username}","password":"${employee.password}","role":"${employee.position}"}. Total employee ${parsedData.length+1}`;
 
-        let dataToWrite = {
-          employees: this.employees,
-          patients: this.patients
-        }
-        parsedData.push(dataToWrite);
+        parsedData.push(employee);
 
         callbackWrite(JSON.stringify(parsedData));
         callbackView(statusMessage);
       });
     }
 
-    writeFile(newFile){
-      fs.writeFile('./employee.json', newFile, (err) => {
-          if (err) throw err;
-          
-        });
-  }
+    employeeLogin(username, password, callbackView){
+      fs.readFile('./employee.json', 'UTF-8', (err, data) => {
+        if (err) throw err;
+        let parsedData = JSON.parse(data);
+        let statusMessage = ''
+        for(let i=0; i<parsedData.length; i++){
+          if(parsedData[i].username == username){
+            if(parsedData[i].password == password){
+              statusMessage = `user ${parsedData[i].name} logged in successfully`;
+              break;
+            }
+          }
+        }
+        if(statusMessage == ''){
+          statusMessage = `username / password wrong`;
+        }
+        callbackView(statusMessage)
+      });
+    }
 }
 
 module.exports = Hospital;
