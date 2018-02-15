@@ -19,8 +19,7 @@ class PatientModel {
 
     static addPatient(optionArr, callbackView) {
         PatientModel.readData(function(data){
-            data.push({"id":data.length+1, "name": optionArr[0], "disease": optionArr.slice(2).join(' ')})
-            console.log(data)
+            data.push({"id":data.length+1, "name": optionArr[0], "disease": optionArr.slice(1).join(' ')});
             PatientModel.writeData(data, function(data){
                 callbackView(data)
             })

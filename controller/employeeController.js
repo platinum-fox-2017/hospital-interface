@@ -9,11 +9,14 @@ class EmployeeControl {
         switch(command) {
             case "register": EmployeeModel.register(optionArr, EmployeeView.register);
                 break;
-            case "login": EmployeeModel.login(optionArr, EmployeeView.login);
+            case "login": EmployeeModel.login(optionArr,EmployeeView.isLoggedIn , EmployeeView.login);
                 break;
             case "logout": EmployeeModel.logout(EmployeeView.logout);
                 break;
-            case "addPatient": EmployeeModel.isLoggedIn(optionArr, PatientControl.addPatient)
+            case "addPatient": 
+                EmployeeModel.isDoctor(optionArr, EmployeeView.accessDenied, PatientControl.addPatient)
+                // EmployeeModel.isLoggedIn(optionArr, PatientControl.addPatient);
+                break;
 
             default: break;
         }

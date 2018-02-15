@@ -26,31 +26,42 @@ class EmployeeModel {
         })
     }
 
-    static login(optionArr, callbackView) {
-        EmployeeModel.readData(function(data){
+    static login(optionArr, callbackView1, callbackView2) {
+        EmployeeModel.isLoggedIn(function(data){
             for(let i = 0;i<data.length; i++) {
                 if(data[i].username === optionArr[0] && data[i].password === optionArr[1]) {
                     data[i].login_status = true;
                     EmployeeModel.writeData(data, function(data){
-                        callbackView(true, data[i])
-                        i = data.length+1;
+                        callbackView2(true, data[i])
                     })
-                }
-                if(i === data.length-1) {
-                    // callbackView(false);
+                    return
                 }
             }
+            return callbackView2(false)
+        }, callbackView1)
+    }
+
+    static isLoggedIn(callback1, callback2) {
+        EmployeeModel.readData(function(data) {
+            let flag = false;
+            let loggedInIndex = -1;
+            for(let i =0; i<data.length; i++) {
+                if(data[i].login_status) {
+                    loggedInIndex = i;
+                    i = data.length;
+                    flag =true;
+                }
+            }
+            if(flag) return callback2(data, loggedInIndex);
+            return callback1(data)
         })
     }
 
-    static isLoggedIn(optionArr, callback) {
-        let flag = false
-        EmployeeModel.readData(function(data){
-            for(let i = 0; i<data.length; i++) {
-                if(data[i].login_status && data[i].role === 'dokter') {
-                    callback(true,optionArr)
-                }
-            }
+    static isDoctor(optionArr, callbackView, callback) {
+        EmployeeModel.isLoggedIn(callbackView, function(data, loggedInIndex){
+            if(data[loggedInIndex].role === 'dokter') {
+                return callback(optionArr);
+            } else return callbackView()
         })
     }
 
@@ -63,11 +74,10 @@ class EmployeeModel {
                     EmployeeModel.writeData(data, function(data){
                         callbackView(true);
                     })
-                }
-                else if(i == data.length-1) {
-                    // callbackView(false);
+                    return
                 }
             }
+            return callbackView(false);
         })
     }
 }
