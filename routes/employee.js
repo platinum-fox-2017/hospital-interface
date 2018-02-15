@@ -1,4 +1,6 @@
 const EmployeeController = require('../controllers/employee')
+const PatientController = require('../controllers/patient')
+
 class Employee {
     constructor(command, name, password, role) {
         this.command = command
@@ -7,9 +9,11 @@ class Employee {
         this.role = role
     }
 
-    registerEmployee() {
+    start() {
         if (this.command === 'register') {
-            EmployeeController.registerEmployee(this.name, this.password, this.role )
+            EmployeeController.registerEmployee(this.name, this.password, this.role)
+        } else if (this.command === 'login') {
+            EmployeeController.loginEmployee(this.name, this.password)
         }
     }
 }

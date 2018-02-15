@@ -7,6 +7,12 @@ class Employee {
             EmployeeView.printRegistered(dataNewEmployee, dataArray)
         })
     }
+
+    static loginEmployee(name, password) {
+        EmployeeModel.loginEmployee(name, password, function (dataNewEmployee) {
+            EmployeeView.printLoginEmployee(dataNewEmployee)
+        })
+    }
 }
 
 module.exports = Employee
