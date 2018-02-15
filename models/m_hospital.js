@@ -1,4 +1,5 @@
 const fs = require('fs')
+const M_Patient = require('../models/m_patient')
 const fileEmployee = './employee.json'
 const filePatient = './patient.json'
 const fileAuth = './session.json'
@@ -40,12 +41,14 @@ class M_Hospital {
             }) 
         })
     }
-    static addPatient(newPatient, callback){
+    static addPatient(nama, diagnosis, callback){
         M_Hospital.auth(role=>{
             if(role === false){
                 callback(false, '')
             }else{
-                M_Hospital.read(filePatient, dataPatient=>{   
+                M_Hospital.read(filePatient, dataPatient=>{ 
+                    let id= dataPatient.length+1 
+                    let newPatient = new M_Patient(id, nama, diagnosis)
                     dataPatient.push(newPatient)
                     M_Hospital.write(filePatient, dataPatient, err=>{
                         callback(true, dataPatient.length)

@@ -7,5 +7,5 @@ if(comment[0]==='register'){
 }else if(comment[0]==='login'){
   Controller.login(comment[1], comment[2])
 }else if(comment[0]==='addPatient'){
-  Controller.addPatient(comment[1], comment[2], comment.slice(3))
+  Controller.addPatient(comment[1], comment.slice(2))
 }

@@ -16,9 +16,9 @@ class C_Hospital{
         })
     
     }
-    static addPatient(id, nama, diag){
-        let newPatient = new M_Patient(id, nama, diag)
-        M_Hospital.addPatient(newPatient, (status,length)=>{
+    static addPatient(nama, diag){
+        //let newPatient = new M_Patient(1, nama, diag)
+        M_Hospital.addPatient(nama, diag, (status,length)=>{
             View.showAddPatient(status, length)
         })
     }
