@@ -1,9 +1,8 @@
 const Model_employee = require('./model_employee')
 const Model_hospital = require('./model_hospital')
-const Model_patient = require('./model_patient')
 const View_employee = require('./view_employee')
 
-class Controller{
+class Controller_employee{
   constructor(){
 
   }
@@ -22,4 +21,4 @@ class Controller{
   }
 }
 
-module.exports = Controller
+module.exports = Controller_employee

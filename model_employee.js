@@ -6,40 +6,54 @@ class Employee {
     this.password = password
     this.position = position
   }
-  static registerEmploy(username,password,position,callback){
-    // console.log(username,password,position)
-    fs.readFile('employee.json','utf8',function(err,data){
+  static readFile(file,type,callback){
+    fs.readFile(file,type,function(err,data){
       if(err){
         console.log(err)
       }else{
-        let listData = JSON.parse(data)
+        callback(data)
+      }
+    })
+  }
+  static registerEmploy(username,password,position,callback){
+    // console.log(username,password,position)
+    let file = './employee.json'
+    Employee.readFile(file,'utf-8',function(dataEmployees){
+      let listData = JSON.parse(dataEmployees)
         let objEmpolyee = new Employee(username, password, position)
         listData.push(objEmpolyee)
         fs.writeFile('./employee.json',JSON.stringify(listData),'utf8',function(err,data){
         })
         callback(listData,objEmpolyee)
-      }
-      
+
     })
+    
   }
+
   static loginEmploy(user,pass,callback){
-    fs.readFile('employee.json','utf8',function(error,data){
-      if(error){
-        console.log(error)
-      }
-      else{
-        let dataEmployee = JSON.parse(data)
+    Employee.readFile('./employee.json','utf8',function(dataEmployees){
+      let dataEmployee = JSON.parse(dataEmployees)
         // console.log(dataEmployee,'---------------')
         let temp =[]
-        temp.push(user,pass)
+        
         for(let i=0;i<dataEmployee.length;i++){
           if(user === dataEmployee[i].username && pass === dataEmployee[i].password){
+            // temp.push(dataEmployee[i].username,dataEmployee[i].password,dataEmployee[i].position)
+            let obj = {
+              username: dataEmployee[i].username,
+              password : dataEmployee[i].password,
+              position : dataEmployee[i].position
+            }
+            temp.push(obj)
+            fs.writeFile('./sessionlogin.json',JSON.stringify(temp),'utf8',function(err,data){
+            })
             callback(true,temp)
+            
             return
           }
         }
+        
         callback(false,temp)
-      }
     })
 
   }

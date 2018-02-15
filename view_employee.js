@@ -1,19 +1,19 @@
 const Controller = require('./controller_employ')
-class View {
+class View_employee {
   constructor(){
 
   }
   static showRegister(dataAll,objEmploy){
     console.log(`Save data success (${JSON.stringify(objEmploy)}) .Total employee : ${dataAll.length}`)
   }
-  static showLogin(hasilChek,user){
+  static showLogin(hasilChek,arruser){
     if(hasilChek === true){
-      console.log(user)
-      console.log(`User ${user[0]} logged in succesfully`)
+      // console.log(arruser)
+      console.log(`User ${arruser[0].username} logged in succesfully`)
     }else{
       console.log('username/password salah')
     }
   }
 }
 
-module.exports = View
+module.exports = View_employee
