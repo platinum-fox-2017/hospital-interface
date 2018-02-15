@@ -1,6 +1,6 @@
 var employee = require('./pekerja.js');
 var view = require('./view.js');
-var pasien = require('./pasien.js')
+var pasien = require('./pasien.js');
 const fs = require('fs');
 var argv = process.argv;
 let status = true;
@@ -55,12 +55,15 @@ class ToDoModel {
           callback(status,patientList.length);
         } else {
           status = true;
-          let inputPatient = new pasien(argv[3],argv[4],argv[5]);
-          patientList.push(inputPatient);
-          let newFormat = JSON.stringify(patientList);
-          fs.writeFile('./patient.json', newFormat, 'UTF-8', function(err){
-            if (err) throw err;
-            callback(status,patientList.length);
+          fs.readFile('./patient.json', 'utf8', function(err, data){
+            let patientList = JSON.parse(data);
+            let inputPatient = new pasien(patientList.length+1,argv[4],argv[5]);
+            patientList.push(inputPatient);
+            let newFormat = JSON.stringify(patientList);
+            fs.writeFile('./patient.json', newFormat, 'UTF-8', function(err){
+              if (err) throw err;
+              callback(status,patientList.length);
+            });
           });
         }
       });
