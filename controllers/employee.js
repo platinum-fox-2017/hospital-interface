@@ -4,22 +4,24 @@ const EmployeeModel = require('../models/employee.js');
 const EmployeeView = require('../views/employee.js');
 
 class EmployeeControl {
-  constructor(name, position, username, password) {
-    this.name = name;
-    this.position = position;
-    this.username = username;
-    this.password = password;
+
+  static register(options) {
+    EmployeeModel.register(options, function (dataObj) {
+        EmployeeView.showMessage(`> save data success {"username":"${dataObj[dataObj.length-1].name}","password":"${dataObj[dataObj.length-1].password}","position":"${dataObj[dataObj.length-1].position}"}. Total employee : ${dataObj.length}`);
+      });
   }
 
-  execute(command) {
-  	switch (command) {
-  		case 'register' : {
-  			EmployeeModel.register({name: this.name, position: this.position, username: this.username, password: this.password},function (dataObj) {
-  				EmployeeView.showMessage(`> save data success {"username":"${dataObj[dataObj.length-1].name}","password":"${dataObj[dataObj.length-1].password}","position":"${dataObj[dataObj.length-1].position}"}. Total employee : ${dataObj.length}`);
-  				// console.log(dataObj);
-  			});
-  		}
-  	}
+  static login(options) {
+    EmployeeModel.login(options, function (flag) {
+        if (flag) EmployeeView.showMessage(`> user ${options.username} logged in successfully`);
+        else EmployeeView.showMessage(`> username / password wrong`);
+      });
+  }
+
+  static logout() {
+    EmployeeModel.logout(function (username) {
+      EmployeeView.showMessage(`> user ${username} logged out successfully`);
+    })
   }
 }
 

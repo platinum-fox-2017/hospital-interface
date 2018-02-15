@@ -24,7 +24,6 @@ class EmployeeModel {
 	static register(data, callback) {
 		EmployeeModel.readFile(function (dataObj) {
 			let newObj = {
-				// id : (Number(dataObj[dataObj.length - 1].id) + 1).toString(),
 				name : data.name,
 				position : data.position,
 				username : data.username,
@@ -36,6 +35,55 @@ class EmployeeModel {
 			EmployeeModel.writeFile(dataObj, function() {
 				callback(dataObj);
 			});
+		});
+	}
+
+	static login(data, callback) {
+		EmployeeModel.readFile(function (dataObj) {
+			let flag = false;
+			for (let i = 0; i < dataObj.length; i++) {
+				if (dataObj[i].username == data.username && dataObj[i].password == data.password) {
+					dataObj[i].status_login = true;
+					flag = true;
+				} else {
+					dataObj[i].status_login = false;
+				}
+			}
+
+			EmployeeModel.writeFile(dataObj, function() {
+				callback(flag);
+			});
+		});
+	}
+
+	static logout(callback) {
+		EmployeeModel.readFile(function (dataObj) {
+			let username = '';
+			for (let i = 0; i < dataObj.length; i++) {
+				if (dataObj[i].status_login) {
+					dataObj[i].status_login = false;
+					username = dataObj[i].username;
+					break;
+				}
+			}
+
+			EmployeeModel.writeFile(dataObj, function() {
+				callback(username);
+			});
+		});
+	}
+
+	static checkLoginNow(callback) {
+		EmployeeModel.readFile(function (dataObj) {
+			let flag = false;
+			for (let i = 0; i < dataObj.length; i++) {
+				if (dataObj[i].status_login && dataObj[i].position == 'dokter') {
+					flag = true;
+					break;
+				}
+			}
+
+			callback(flag);
 		});
 	}
 }

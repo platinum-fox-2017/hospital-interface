@@ -1,9 +1,9 @@
 "use strict"
 
-class EmployeeView {
+class PatientView {
 	static showMessage(data) {
 		console.log(data);
 	}
 }
 
-module.exports = EmployeeView;
+module.exports = PatientView;
