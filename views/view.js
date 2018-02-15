@@ -16,6 +16,13 @@ class V_Hospital{
             console.log('tidak memiliki akses untuk add patient')
         }
     }
+    static logout(status){
+        if(status === true){
+            console.log(`Anda telah keluar dari sistem`)
+        }else{
+            console.log('Anda gagal logout')
+        }
+    }
 }
 
 module.exports = V_Hospital

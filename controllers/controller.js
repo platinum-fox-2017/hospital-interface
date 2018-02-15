@@ -16,10 +16,14 @@ class C_Hospital{
         })
     
     }
-    static addPatient(nama, diag){
-        //let newPatient = new M_Patient(1, nama, diag)
-        M_Hospital.addPatient(nama, diag, (status,length)=>{
+    static addPatient(nama, diagnosis){
+        M_Hospital.addPatient(nama, diagnosis, (status,length)=>{
             View.showAddPatient(status, length)
+        })
+    }
+    static logout(){
+        M_Employee.logout(status=>{
+            View.logout(status)
         })
     }
 }

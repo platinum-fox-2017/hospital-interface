@@ -8,4 +8,6 @@ if(comment[0]==='register'){
   Controller.login(comment[1], comment[2])
 }else if(comment[0]==='addPatient'){
   Controller.addPatient(comment[1], comment.slice(2))
+}else if(comment[0]==='logout'){
+  Controller.logout(comment[1])
 }

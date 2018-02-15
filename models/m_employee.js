@@ -30,6 +30,12 @@ class M_Employee {
             }
         })
     }
+    static logout(callback){
+        let arrAut = []
+        fs.writeFile('./session.json', JSON.stringify(arrAut), err=>{
+            callback(true)
+        })
+    }
   }
 
   module.exports = M_Employee
