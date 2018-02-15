@@ -11,6 +11,9 @@ class Controller{
         if(syntax == 'register'){
             Employee.addEmployee(username, password, position, viewData.successAdd)
         }
+        else if(syntax == 'login'){
+            Employee.checkLogin(username, password, viewData.resultLogin)
+        }
     }
 }
 

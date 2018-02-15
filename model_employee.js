@@ -1,6 +1,8 @@
 
 const fs = require('fs')
 
+const viewData = require ('./view.js')
+
 class Employee {
   constructor(name, position, username, password) {
     this._name = name
@@ -24,10 +26,25 @@ class Employee {
 
           callback(newObj, parseData.length)
       })
-      // console.log('Total Employee :' +parseData.length)
     })
   }
 
+  static checkLogin(username, password, callback){
+    fs.readFile('./employee.json',(err,data) =>{
+        if(err) throw err
+        let object = JSON.parse(data)
+        var result = false
+        for(let i=0; i<object.length; i++){
+            if(object[i].username == username && object[i].password == password){
+              result = true
+              callback(result, username)
+            }
+        }
+        if(result == false){
+          callback(result)
+        }
+    })
+  }
   
 
 }
