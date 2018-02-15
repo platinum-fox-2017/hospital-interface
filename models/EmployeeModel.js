@@ -15,5 +15,19 @@ class Employee {
 
     })
   }
+  login (callback){
+    fs.readFile('employee_data.json',(err,data)=>{
+      data = JSON.parse(data);
+      var isValid = false;
+      for(var i = 0; i < data.length; i++){
+        if(this.username === data[i].username){
+          if(this.password === data[i].password){
+           isValid = true; 
+          }
+        }
+      }
+      callback(isValid,this.username);
+    })
+  }
 }
 module.exports = Employee;
