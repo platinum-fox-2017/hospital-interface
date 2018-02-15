@@ -17,6 +17,21 @@ class Employee {
       })
     })
   }
+
+  static loginData(username, password, cb) {
+    fs.readFile('./employee.json', 'utf8', function(err, data) {
+      let arr_json = JSON.parse(data)
+      for (var i = 0; i < arr_json.length; i++) {
+        if (username === arr_json[i].Username && password === arr_json[i].Password) {
+          cb(username)
+          // console.log(username);
+        }
+        else {
+          cb()
+        }
+      }
+    })
+  }
 }
 
 module.exports = Employee

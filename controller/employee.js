@@ -12,6 +12,12 @@ class Employee {
         View.showRegister(data1, data2)
       })
     }
+    if (input === 'login') {
+      let login_data = Model.loginData(username, password, function (data) {
+        // console.log(data);
+        View.showLogin(data)
+      })
+    }
   }
 
 }
