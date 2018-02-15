@@ -25,9 +25,17 @@ class Employee_Model {
             data.push(employee);
             Employee_Model.write_file(data);
             cb(data);
-        })
+        });
+    }
+    static login(username,password,cb){
+        Employee_Model.read_file((data)=> {
+            let employee = data.find((employee)=> employee.username === username && employee.password === password);
+            if(employee === undefined) return;
+            else employee.login = true;
+            Employee_Model.write_file(data);
+            cb(employee);
+        });
     }
 }
 
 module.exports = Employee_Model;
- 
