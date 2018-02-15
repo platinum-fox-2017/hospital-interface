@@ -8,6 +8,6 @@ if(argv[2]==='register'){
   model.modelLogin(view.viewLogin);
 } else if(argv[2]==='addPatient'){
   model.modelAddPatient(view.viewAddPatient);
+} else {
+  console.log('Wrong Command!');
 }
-
-// {"username":"Jason","pasword":"111222333","role":"Komisaris"},{"username":"Momoa","password":"444555666"}

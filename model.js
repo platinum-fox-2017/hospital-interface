@@ -21,14 +21,21 @@ class ToDoModel {
 
   static modelLogin(callback){
     fs.readFile('./employee.json', 'utf8', function(err, data){
-      let employeeList = JSON.parse(data);
+      var employeeList = JSON.parse(data);
       let count = 0;
       for(let i=0; i<employeeList.length; i++){
+        var belakang = employeeList[employeeList.length-1];
+        var current = employeeList[i];
         if(employeeList[i].username===argv[3] && employeeList[i].password===argv[4]){
           count++;
-          const pekerjaan = argv[5];
+          employeeList[i]=belakang;
+          employeeList[employeeList.length-1]=current;
         }
       }
+      let newFormat = JSON.stringify(employeeList);
+      fs.writeFile('./employee.json', newFormat, 'UTF-8', function(err){
+        if (err) throw err;
+      });
       if(count===1){
         status = true;
         callback(status,argv[3]);
@@ -42,18 +49,21 @@ class ToDoModel {
     fs.readFile('./patient.json', 'utf8', function(err, data){
       let patientList = JSON.parse(data);
       let status = false;
-      if(pekerjaan!=='Dokter'){
-        callback(status,patientList.length);
-      } else {
-        status = true;
-        let inputPatient = new pasien(argv[3],argv[4],argv[5]);
-        patientList.push(inputPatient);
-        let newFormat = JSON.stringify(patientList);
-        fs.writeFile('./patient.json', newFormat, 'UTF-8', function(err){
-          if (err) throw err;
+      fs.readFile('./employee.json', 'utf8', function(err, data){
+        var employeeList = JSON.parse(data);
+        if(employeeList[employeeList.length-1].position!=='Dokter'){
           callback(status,patientList.length);
-        });
-      }
+        } else {
+          status = true;
+          let inputPatient = new pasien(argv[3],argv[4],argv[5]);
+          patientList.push(inputPatient);
+          let newFormat = JSON.stringify(patientList);
+          fs.writeFile('./patient.json', newFormat, 'UTF-8', function(err){
+            if (err) throw err;
+            callback(status,patientList.length);
+          });
+        }
+      });
     });
   }
 }
