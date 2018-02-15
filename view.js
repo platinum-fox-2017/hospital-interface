@@ -8,24 +8,34 @@ class View {
   }
 
   displayRegisterData(employee, parsedData){
-    console.log(`> Save data success name: ${employee.name}, username: ${employee.username}, position: ${employee.position}. Total employee : ${parsedData.length}`);
+    console.log(`> Save data success name: ${employee.name}, username: ${employee.username}, position: ${employee.position}. Total employee : ${parsedData.length}.`);
   }
 
   displayLoginStatus(loginStatus, username) {
     if (loginStatus === false) {
-      console.log('> username / password invalid');
+      console.log('> username / password invalid.');
     } else if (loginStatus === true) {
-      console.log(`> user ${username} logged in succesfully`);
+      console.log(`> user ${username} logged in succesfully.`);
     } else if (loginStatus === 'already logged in') {
-      console.log(`> user ${username} is already logged in`);
+      console.log(`> user ${username} is already logged in.`);
+    }
+  }
+
+  displayLogoutStatus(username, logoutSuccess) {
+    if (logoutSuccess === false) {
+      console.log(`> Logout failed.`);
+    } else if (logoutSuccess === true) {
+      console.log(`> ${username} has logged out.`);
+    } else if (logoutSuccess === 'all') {
+      console.log(`> All users logged out`);
     }
   }
 
   displayPatientAdd(isValid, name, diagnosis, patientData) {
     if (isValid === false) {
-      console.log(`> user does not have access to add patient`);
+      console.log(`> user does not have access to add patient.`);
     } else if (isValid === true) {
-      console.log(`> Patient adata succesfully added. Total patient data : ${patientData.length}`);
+      console.log(`> Patient adata succesfully added. Total patient data : ${patientData.length}.`);
     }
   }
 

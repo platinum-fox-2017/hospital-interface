@@ -73,7 +73,7 @@ class Model {
       for (var i = 0; i < parsedData.length; i++) {
         if (username === parsedData[i].username) {
           if (password === parsedData[i].password) {
-            if (parsedData[i].isLogIn = true) {
+            if (parsedData[i].isLogIn === true) {
               loginStatus = 'already logged in'
               i = parsedData.length
               return callback(loginStatus, username)
@@ -98,6 +98,57 @@ class Model {
     });
   }
 
+  logoutEmployee(username, callback) {
+    if (username === undefined) {
+      // logout all user
+      this.readDataJSON(function(err, data){
+        let parsedData = JSON.parse(data);
+        for (var i = 0; i < parsedData.length; i++) {
+          parsedData[i].isLogIn = false;
+        }
+        let logoutSuccess = 'all'
+        let jsonData = JSON.stringify(parsedData);
+
+        fs.writeFile('./employeeData.json', jsonData, 'utf8', function(err){
+          if(err){
+            console.log(err);
+          } else {
+            callback(username, logoutSuccess)
+          }
+        });
+      });
+    } else {
+      this.readDataJSON(function(err, data){
+        let parsedData = JSON.parse(data);
+        let logoutSuccess = false
+        for (var i = 0; i < parsedData.length; i++) {
+          if (parsedData[i].username = username) {
+            if (parsedData[i].isLogIn = false) {
+              return callback(username, logoutSuccess);
+            } else {
+              parsedData[i].isLogIn = false;
+              logoutSuccess = true
+            }
+          }
+        }
+
+        if (logoutSuccess === false) {
+          return callback(username, logoutSuccess)
+        } else {
+          // write file
+          let jsonData = JSON.stringify(parsedData);
+          fs.writeFile('./employeeData.json', jsonData, 'utf8', function(err){
+            if(err){
+              console.log(err);
+            } else {
+              callback(username, logoutSuccess)
+            }
+          });
+        }
+      });
+    }
+  }
+
   doctorAddPatient(id, name, diagnosis, callback) {
     this.readDataJSON(function(err, data){
       let parsedData = JSON.parse(data);
@@ -116,7 +167,9 @@ class Model {
             console.log(err);
           } else {
             let patientData = JSON.parse(data2);
-            let patient = new Patient(id, name, diagnosis);
+            let currentID = patientData.length
+            let newID = currentID + 1
+            let patient = new Patient(newID, name, diagnosis);
             patientData.push(patient);
             let patientJsonData = JSON.stringify(patientData);
 
