@@ -34,21 +34,44 @@ class Employee {
         if(err) throw err
         let object = JSON.parse(data)
         var result = false
+        var dataLogin = []
         for(let i=0; i<object.length; i++){
             if(object[i].username == username && object[i].password == password){
               result = true
+              dataLogin.push(object[i])
               callback(result, username)
             }
         }
         if(result == false){
           callback(result)
         }
+        fs.writeFile('./login.json',JSON.stringify(dataLogin),function(err){
+          if(err) throw err;
+        })
     })
   }
   
+  static loginStatus(callback){
+    fs.readFile('./login.json',(err,data) =>{
+      if(err) throw err
+      let object = JSON.parse(data)
+      var result = false
+      for(let i=0; i<object.length; i++){
+          if(object[i].role == 'dokter'){
+            result = true
+            console.log(result)
+            callback(result)
+          }
+      }
+      if(result == false){
+        return result
+        callback(result)
+      }
+    })
+  }
 
 }
 
-// Employee.showList()
+// Employee.loginStatus()
 
 module.exports = Employee
