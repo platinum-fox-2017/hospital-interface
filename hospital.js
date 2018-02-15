@@ -1,25 +1,27 @@
-class Hospital {
-  constructor(name, location, employees, patients) {
-    this.name = name
-    this.employees = employees
-    this.patients = patients
-    this.location = location
-  }
+"use strict"
+const Controller = require('./controller.js')
+
+class Hospital{
+    constructor(){
+
+    }
+
+   static register(data){
+      Controller.register(data)
+    }
+
+   static login(data){
+      Controller.login(data)
+    }
+
 }
 
-class Patient {
-  constructor(id, name, diagnosis) {
-    this.id = id
-    this.name = name
-    this.diagnosis = diagnosis
-  }
-}
+var argv = process.argv.slice(2,process.argv.length)
+var data = argv.slice(1,argv.length)
 
-class Employee {
-  constructor(name, position, username, password) {
-    this.name = name
-    this.position = position
-    this.username = username
-    this.password = password
-  }
+if(argv[0]==='register'){
+  Hospital.register(data)
+}
+else if(argv[0]==='login'){
+  Hospital.login(data)
 }
