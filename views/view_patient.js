@@ -1,4 +1,4 @@
-const Controller = require('./controller_patient')
+const Controller = require('../controllers/controller_patient')
 class View_patient {
   constructor(){
 

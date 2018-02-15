@@ -17,12 +17,12 @@ class Employee {
   }
   static registerEmploy(username,password,position,callback){
     // console.log(username,password,position)
-    let file = './employee.json'
+    let file = 'employee.json'
     Employee.readFile(file,'utf-8',function(dataEmployees){
       let listData = JSON.parse(dataEmployees)
         let objEmpolyee = new Employee(username, password, position)
         listData.push(objEmpolyee)
-        fs.writeFile('./employee.json',JSON.stringify(listData),'utf8',function(err,data){
+        fs.writeFile('employee.json',JSON.stringify(listData),'utf8',function(err,data){
         })
         callback(listData,objEmpolyee)
 
@@ -31,7 +31,7 @@ class Employee {
   }
 
   static loginEmploy(user,pass,callback){
-    Employee.readFile('./employee.json','utf8',function(dataEmployees){
+    Employee.readFile('employee.json','utf8',function(dataEmployees){
       let dataEmployee = JSON.parse(dataEmployees)
         // console.log(dataEmployee,'---------------')
         let temp =[]
@@ -45,7 +45,7 @@ class Employee {
               position : dataEmployee[i].position
             }
             temp.push(obj)
-            fs.writeFile('./sessionlogin.json',JSON.stringify(temp),'utf8',function(err,data){
+            fs.writeFile('sessionlogin.json',JSON.stringify(temp),'utf8',function(err,data){
             })
             callback(true,temp)
             
@@ -59,7 +59,7 @@ class Employee {
   }
   static logoutEmploy(callback){
     let arr =[]
-    fs.writeFile('./sessionlogin.json',JSON.stringify(arr),'utf8',function(err,data){
+    fs.writeFile('sessionlogin.json',JSON.stringify(arr),'utf8',function(err,data){
       if(err){
         console.log(err)
       }else{

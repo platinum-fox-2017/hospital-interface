@@ -1,5 +1,5 @@
-const Controller_employee = require('./controller_employ')
-const Controller_Patient = require('./controller_patient')
+const Controller_employee = require('./controllers/controller_employ')
+const Controller_Patient = require('./controllers/controller_patient')
 
 let input1 = process.argv[2]//command
 let input2 = process.argv.splice(3).join(' ').split(' ')

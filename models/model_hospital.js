@@ -1,5 +1,5 @@
-const Employee = require('./model_employee')
-const Patient = require('./model_patient')
+const Employee = require('../models/model_employee')
+const Patient = require('../models/model_patient')
 
 class Hospital {
   constructor(name, location) {

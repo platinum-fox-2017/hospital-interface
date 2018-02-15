@@ -1,4 +1,4 @@
-const Controller = require('./controller_employ')
+const Controller = require('../controllers/controller_employ')
 class View_employee {
   constructor(){
 

@@ -1,6 +1,6 @@
-const Model_employee = require('./model_employee')
-const Model_hospital = require('./model_hospital')
-const View_employee = require('./view_employee')
+const Model_employee = require('../models/model_employee')
+const Model_hospital = require('../models/model_hospital')
+const View_employee = require('../views/view_employee')
 
 class Controller_employee{
   constructor(){

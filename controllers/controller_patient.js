@@ -1,5 +1,5 @@
-const Model_patient = require('./model_patient')
-const View_patient = require('./view_patient')
+const Model_patient = require('../models/model_patient')
+const View_patient = require('../views/view_patient')
 
 class Controller_patient{
   constructor(){
