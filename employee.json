@@ -1,1 +1,1 @@
-[{"username":"budi","password":"123456","role":"dokter"},{"username":"angga","password":"54321","role":"admin"}]
+[{"username":"budi","password":"123456","role":"dokter","islogin":true},{"username":"angga","password":"54321","role":"admin","islogin":false}]
