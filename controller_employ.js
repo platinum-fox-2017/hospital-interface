@@ -7,10 +7,15 @@ class Controller{
   constructor(){
 
   }
-  static command(input1,input2,input3,input4){
-    if(input1 === 'register'){
-      Model_employee.registerEmploy(input2,input3,input4,function(dataAll, objEmploy){
+  static command(command,user,pass,role){
+    if(command === 'register'){
+      Model_employee.registerEmploy(user,pass,role,function(dataAll, objEmploy){
         View_employee.showRegister(dataAll,objEmploy)
+      })
+    }
+    else if(command === 'login'){
+      Model_employee.loginEmploy(user,pass,function(hasilChek,arruser){
+        View_employee.showLogin(hasilChek,arruser)
       })
     }
 

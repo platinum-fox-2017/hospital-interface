@@ -22,7 +22,28 @@ class Employee {
       
     })
   }
-}
+  static loginEmploy(user,pass,callback){
+    fs.readFile('employee.json','utf8',function(error,data){
+      if(error){
+        console.log(error)
+      }
+      else{
+        let dataEmployee = JSON.parse(data)
+        // console.log(dataEmployee,'---------------')
+        let temp =[]
+        temp.push(user,pass)
+        for(let i=0;i<dataEmployee.length;i++){
+          if(user === dataEmployee[i].username && pass === dataEmployee[i].password){
+            callback(true,temp)
+            return
+          }
+        }
+        callback(false,temp)
+      }
+    })
 
+  }
+}
+// console.log(Employee.loginEmploy('budi',1234,'dokter'))
 module.exports = Employee
 
