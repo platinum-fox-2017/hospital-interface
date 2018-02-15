@@ -57,6 +57,19 @@ class Employee {
     })
 
   }
+  static logoutEmploy(callback){
+    let arr =[]
+    fs.writeFile('./sessionlogin.json',JSON.stringify(arr),'utf8',function(err,data){
+      if(err){
+        console.log(err)
+      }else{
+        let user = 'berhasil log out dari system'
+        callback(user)
+      }
+    })
+    
+
+  }
 }
 // console.log(Employee.loginEmploy('budi',1234,'dokter'))
 module.exports = Employee

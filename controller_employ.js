@@ -17,6 +17,11 @@ class Controller_employee{
         View_employee.showLogin(hasilChek,arruser)
       })
     }
+    else if(command === 'logout'){
+      Model_employee.logoutEmploy(function(log){
+        View_employee.showLogout(log)
+      })
+    }
 
   }
 }

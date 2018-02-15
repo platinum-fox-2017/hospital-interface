@@ -14,6 +14,9 @@ class View_employee {
       console.log('username/password salah')
     }
   }
+  static showLogout(log){
+    console.log(log)
+  }
 }
 
 module.exports = View_employee

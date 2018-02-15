@@ -32,9 +32,9 @@ class Patient {
   }
   static addPatient(inputData,callback){
     // console.log(inputData,'-------------')
-    let id = inputData[0]
-    let name = inputData[1]
-    let diagnosis = inputData.splice(2).join(',')
+    // let id = inputData[0]
+    // let name = inputData[1]
+    // let diagnosis = inputData.splice(2).join(',')
     // console.log(diagnosis)
     // console.log(id)
     let filePatient = './patient.json'
@@ -44,6 +44,9 @@ class Patient {
       }else{
         Patient.readFile(filePatient,'utf8',function(dataPatient){
           let listPatient = JSON.parse(dataPatient)
+          let id = listPatient.length+1
+          let name = inputData[0]
+          let diagnosis = inputData.splice(1).join(',')
           let objPatient = new Patient(id,name,diagnosis)
           listPatient.push(objPatient)
           fs.writeFile(filePatient,JSON.stringify(listPatient),function(err,data){
