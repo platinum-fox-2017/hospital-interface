@@ -1,19 +1,4 @@
-class Hospital {
-  constructor(name, location, employees, patients) {
-    this.name = name
-    this.employees = employees
-    this.patients = patients
-    this.location = location
-  }
-}
-
-class Patient {
-  constructor(id, name, diagnosis) {
-    this.id = id
-    this.name = name
-    this.diagnosis = diagnosis
-  }
-}
+const fs = require('fs')
 
 class Employee {
   constructor(name, position, username, password) {
@@ -22,4 +7,10 @@ class Employee {
     this.username = username
     this.password = password
   }
+}
+
+class ModelEmployee{
+  constructor(){}
+
+  static readData()
 }
