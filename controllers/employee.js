@@ -2,11 +2,10 @@ const EmployeeModel = require('../models/employee')
 const EmployeeView = require('../views/employee')
 
 class Employee {
-    constructor(name, position, username, password) {
-        this.name = name
-        this.position = position
-        this.username = username
-        this.password = password
+    static registerEmployee(name, password, role) {
+        EmployeeModel.registerEmployee(name, password, role, function (dataNewEmployee, dataArray) {
+            EmployeeView.printRegistered(dataNewEmployee, dataArray)
+        })
     }
 }
 
