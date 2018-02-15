@@ -52,6 +52,35 @@ class Employee {
       callback(status)
     })
   }
+
+  static logout(username, callback) {
+    Employee.bacaFile(function(data){
+      let status = false
+      for(let i=0; i<data.length; i++) {
+        if(data[i].username == username) {
+          data[i].status = false
+          status = true
+        }
+      }
+      Employee.writeFile(data, function(){
+        callback(status)
+      })
+    })
+  }
+
+  static checkLogin(role, login, callback) {
+    Employee.bacaFile(function(data){
+      let status = false
+      for(let i=0; i<data.length; i++) {
+        if(data[i].role == role && data[i].status == login) {
+          status = true
+          console.log('masuk');
+        }
+      }
+      callback(status)
+    })
+  }
+
 }
 
 module.exports = Employee

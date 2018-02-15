@@ -14,7 +14,8 @@ class controller {
       case 'register': this.register(command2[0],command2[1],command2[2]); break;
       case 'login': this.login(command2[0], command2[1]); break;
       case 'addPatient': this.addPatient(command2); break;
-      default: 'ga ada'
+      case 'logout': this.logout(command2); break;
+      default: this.help()
     }
 
   }
@@ -31,10 +32,26 @@ class controller {
     })
   }
 
-  static addPatient(command) {
-    modelPatient.addPatient(command, function(data){
-      viewEmployee.saveData(data)
+  static logout(username) {
+    modelEmployee.logout(username, function(data){
+      viewEmployee.logout(data);
     })
+  }
+
+  static addPatient(command) {
+    modelEmployee.checkLogin("dokter", true, function(data){
+      if(data == true) {
+        modelPatient.addPatient(command, function(data){
+          viewEmployee.saveDataPatient(data)
+        })
+      } else {
+        viewEmployee.saveDataPatientGagal()
+      }
+    })
+  }
+
+  static help() {
+    viewEmployee.listHelp()
   }
 
 }

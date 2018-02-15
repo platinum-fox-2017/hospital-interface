@@ -1,1 +1,1 @@
-[{"username":"budi","password":"123456","role":"dokter","status":true},{"username":"nuri","password":"123456","role":"perawat","status":false},{"username":"angga","password":"54321","role":"admin","status":false},{"id":"1","name":"Daniel","diagnosis":["batuk","pilek","demam"]},{"id":"1","name":"Daniel","diagnosis":["batuk","pilek","demam"]}]
+[{"id":"1","name":"Daniel","diagnosis":["batuk","pilek","demam"]},{"id":"2","name":"Danu","diagnosis":["sakit","hati","jiwa","raga"]}]

@@ -12,7 +12,7 @@ class Patient {
   }
 
   static bacaFile(callback) {
-    fs.readFile('./employee.json', 'utf8', function(err, data){
+    fs.readFile('./patient.json', 'utf8', function(err, data){
       if(err) throw err;
       let dataObj = JSON.parse(data);
       callback(dataObj)
@@ -28,21 +28,16 @@ class Patient {
 
   static addPatient(command, callback) {
     Patient.bacaFile(function(data){
-      for(let i=0; i<data.length; data++) {
-        if(data[i].role == 'dokter' && data[i].status == true) {
-          console.log('masuk');
-          let newPatient = {}
-          newPatient.id = command[0]
-          newPatient.name = command[1]
-          newPatient.diagnosis = command.splice(2)
+      let newPatient = {}
+      newPatient.id = command[0]
+      newPatient.name = command[1]
+      newPatient.diagnosis = command.splice(2)
 
-          data.push(new Patient(newPatient))
+      data.push(new Patient(newPatient))
 
-          Patient.writeFile(data,function(){
-            callback(data)
-          })
-        }
-      }
+      Patient.writeFile(data,function(){
+        callback(data)
+      })
     })
   }
 }
