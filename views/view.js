@@ -9,6 +9,13 @@ class V_Hospital{
             console.log(`username / password wrong`)
         }
     }
+    static showAddPatient(status, length){
+        if(status === true){
+            console.log(`data pasien berhasil ditambahkan. Total data pasien : ${length}`)
+        }else{
+            console.log('tidak memiliki akses untuk add patient')
+        }
+    }
 }
 
 module.exports = V_Hospital

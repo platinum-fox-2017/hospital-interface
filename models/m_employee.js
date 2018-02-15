@@ -17,15 +17,20 @@ class M_Employee {
                 for(let i = 0; i<dataJson.length; i++){
                     if(dataJson[i].username === username && dataJson[i].password === password){
                         comment = 'success'
-                        dataJson[i].islogin = true
+                        let arr = []                       
+                        let obj = {
+                            role : dataJson[i].role
+                        }
+                        arr.push(obj)
+                        fs.writeFile('./session.json', JSON.stringify(arr), err=>{
+                            callback(username, comment)
+                        })
                     }
                 }
-                fs.writeFile('./employee.json', JSON.stringify(dataJson), err=>{
-                    callback(username, comment)
-                })
             }
         })
     }
   }
 
   module.exports = M_Employee
+  
