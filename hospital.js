@@ -1,25 +1,5 @@
-class Hospital {
-  constructor(name, location, employees, patients) {
-    this.name = name
-    this.employees = employees
-    this.patients = patients
-    this.location = location
-  }
-}
+const Controller = require('./controller');
 
-class Patient {
-  constructor(id, name, diagnosis) {
-    this.id = id
-    this.name = name
-    this.diagnosis = diagnosis
-  }
-}
+let command = process.argv.slice(2)
 
-class Employee {
-  constructor(name, position, username, password) {
-    this.name = name
-    this.position = position
-    this.username = username
-    this.password = password
-  }
-}
+Controller.commandManage(command)
