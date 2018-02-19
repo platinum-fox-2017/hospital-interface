@@ -1,0 +1,58 @@
+[
+    {
+        "id": "1",
+        "name": "heri",
+        "diagnosis": [
+            "batuk",
+            "flu",
+            "pilek",
+            "demam"
+        ]
+    },
+    {
+        "id": "2",
+        "name": "andrew",
+        "diagnosis": [
+            "sariawan",
+            "bibirpecah"
+        ]
+    },
+    {
+        "id": "3",
+        "name": "deva",
+        "diagnosis": [
+            "batuk",
+            "flu",
+            "pilek",
+            "demam"
+        ]
+    },
+    {
+        "id": "4",
+        "name": "dennis",
+        "diagnosis": [
+            "batuk",
+            "flu",
+            "pilek",
+            "demam"
+        ]
+    },
+    {
+        "id": 5,
+        "name": "agra",
+        "diagnosis": [
+            "batuk",
+            "flu",
+            "pilek",
+            "demam"
+        ]
+    },
+    {
+        "id": 6,
+        "name": "ceca",
+        "diagnosis": [
+            "batuk",
+            "pilek"
+        ]
+    }
+]
